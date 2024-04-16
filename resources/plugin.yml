@@ -1,0 +1,14 @@
+name: ManhuntWithEffects
+version: '${project.version}'
+main: me.lunafy.manhuntwitheffects.ManhuntWithEffects
+api-version: '1.20'
+commands:
+  credits:
+    usage: /<command>
+    description: i give up in life
+  changeteam:
+    usage: /<command> [player] [new_team]
+    description: Change a players team
+  start:
+    usage: /<command>
+    description: Start a Manhunt Game
