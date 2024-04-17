@@ -5,9 +5,7 @@ import me.lunafy.manhuntwitheffects.enums.GameState;
 import me.lunafy.manhuntwitheffects.enums.PlayerTeam;
 import me.lunafy.manhuntwitheffects.gameplay.Board;
 import me.lunafy.manhuntwitheffects.gameplay.PotionEffectRunnable;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,10 +25,18 @@ public class Start implements CommandExecutor {
         if(sender instanceof Player) {
             Player player = (Player) sender;
 
+            if(!player.isOp()) return true;
+
             if(task != 0) {
                 player.sendMessage(ChatColor.RED + "A game is already in progress!");
                 return true;
             }
+
+            World mainWorld = Bukkit.getWorld("world");
+            mainWorld.setTime(4000);
+            mainWorld.setStorm(false);
+            mainWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+            mainWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
 
             task = Bukkit.getScheduler().scheduleSyncRepeatingTask(ManhuntWithEffects.getInstance(), new Runnable() {
                 @Override
@@ -61,9 +67,9 @@ public class Start implements CommandExecutor {
 
                                 for(Map.Entry<UUID, PlayerTeam> set : ManhuntWithEffects.getInstance().players.entrySet()) {
                                     if(set.getValue() == PlayerTeam.HUNTER) {
-                                        Player runner = Bukkit.getPlayer(set.getKey());
-                                        runner.removePotionEffect(PotionEffectType.BLINDNESS);
-                                        runner.playSound(runner.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+                                        Player hunter = Bukkit.getPlayer(set.getKey());
+                                        hunter.removePotionEffect(PotionEffectType.BLINDNESS);
+                                        hunter.playSound(hunter.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
                                     }
                                 }
 

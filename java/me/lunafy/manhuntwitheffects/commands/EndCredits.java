@@ -16,6 +16,8 @@ public class EndCredits implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
 
+            if(!p.isOp()) return true;
+
             if(args.length > 0) {
                 Player target = Bukkit.getPlayer(args[0]);
 

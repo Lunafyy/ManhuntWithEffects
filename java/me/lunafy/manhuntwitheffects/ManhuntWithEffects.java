@@ -76,11 +76,13 @@ public final class ManhuntWithEffects extends JavaPlugin {
             p.teleport(getServer().getWorld("world").getSpawnLocation());
         }
 
+        p.getInventory().clear();
+
         if (newTeam == PlayerTeam.HUNTER) {
             p.getInventory().addItem(TrackingCompass.getItem());
         }
 
-        p.getInventory().clear();
+
     }
 
     public boolean validTeams() {
