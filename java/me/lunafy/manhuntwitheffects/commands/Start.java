@@ -77,7 +77,7 @@ public class Start implements CommandExecutor {
 
                                 Bukkit.getScheduler().runTaskTimer(ManhuntWithEffects.getInstance(), PotionEffectRunnable.getInstance(), 0, 120 * 20);
                             }
-                        }, 20 * 5);
+                        }, 20 * 15);
 
                         ManhuntWithEffects.getInstance().currentState = GameState.IN_GAME;
 

@@ -9,9 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class PotionEffectRunnable implements Runnable {
     private final static PotionEffectRunnable instance = new PotionEffectRunnable();
@@ -23,12 +21,14 @@ public class PotionEffectRunnable implements Runnable {
         effectGiven();
 
         PotionEffectType[] potionEffectTypes = PotionEffectType.values();
+        ArrayList<PotionEffectType> potionEffectTypeArray = (ArrayList<PotionEffectType>) Arrays.asList(potionEffectTypes);
+        potionEffectTypeArray.remove(PotionEffectType.HARM);
         Random random = new Random();
 
         for(Map.Entry<UUID, PlayerTeam> entry : ManhuntWithEffects.getInstance().players.entrySet()) {
             if(entry.getValue() != PlayerTeam.SPECTATOR) {
                 Player player = Bukkit.getPlayer(entry.getKey());
-                PotionEffect effect = new PotionEffect(potionEffectTypes[random.nextInt(potionEffectTypes.length)], 15 * 20, random.nextInt(5));
+                PotionEffect effect = new PotionEffect(potionEffectTypeArray.get(random.nextInt(potionEffectTypeArray.size())), 15 * 20, random.nextInt(5));
 
                 player.addPotionEffect(effect);
 
