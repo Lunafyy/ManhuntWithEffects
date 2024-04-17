@@ -8,6 +8,7 @@ import me.lunafy.manhuntwitheffects.enums.PlayerTeam;
 import me.lunafy.manhuntwitheffects.events.PlayerDeath;
 import me.lunafy.manhuntwitheffects.events.PlayerMove;
 import me.lunafy.manhuntwitheffects.events.PlayerRegistering;
+import me.lunafy.manhuntwitheffects.events.PlayerRespawn;
 import me.lunafy.manhuntwitheffects.gameplay.Board;
 import me.lunafy.manhuntwitheffects.gameplay.Tracker;
 import me.lunafy.manhuntwitheffects.items.TrackingCompass;
@@ -42,6 +43,7 @@ public final class ManhuntWithEffects extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerRegistering(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeath(), this);
+        getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
 
         boardTask = getServer().getScheduler().runTaskTimer(this, Board.getInstance(), 0, 5);
         trackingTask = getServer().getScheduler().runTaskTimer(this, Tracker.getInstance(), 0, 20);
