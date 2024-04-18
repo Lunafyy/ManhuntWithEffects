@@ -23,6 +23,7 @@ public class PotionEffectRunnable implements Runnable {
         PotionEffectType[] potionEffectTypes = PotionEffectType.values();
         ArrayList<PotionEffectType> potionEffectTypeArray = (ArrayList<PotionEffectType>) Arrays.asList(potionEffectTypes);
         potionEffectTypeArray.remove(PotionEffectType.HARM);
+        potionEffectTypeArray.remove(PotionEffectType.WITHER);
         Random random = new Random();
 
         for(Map.Entry<UUID, PlayerTeam> entry : ManhuntWithEffects.getInstance().players.entrySet()) {
